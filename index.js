@@ -6,6 +6,14 @@ let lastBuildTimestamp = 0;
 let externals = {};
 let blockDependencies = [];
 
+if(options.plugins) {
+  options.plugins.forEach(plugin => {
+    if(plugin.initForYuzuLoader) {
+      plugin.initForYuzuLoader(options);
+    }
+  });
+}
+
 const buildBlockDependencies = (options) => {
 
   yuzu.build.register(options.registeredPartialsDirs, options.hbsHelpers);
