@@ -27,6 +27,8 @@ const buildBlockDependencies = (options) => {
 
 module.exports = async function(source) {
 
+  if(this.resourcePath.endsWith('package.json')) return '';
+
   if(lastBuildTimestamp < (this._module.buildTimestamp - options.blockDependenciesTimeout) ) {
     buildBlockDependencies(options);
     lastBuildTimestamp = this._module.buildTimestamp;

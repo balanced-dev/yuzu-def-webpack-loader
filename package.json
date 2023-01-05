@@ -1,6 +1,6 @@
 {
   "name": "yuzu-loader",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Webpack integration for Yuzu",
   "main": "index.js",
   "scripts": {},
