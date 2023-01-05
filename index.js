@@ -1,4 +1,5 @@
 const yuzu = require('yuzu-definition-core');
+const yuzuHelpers = require('yuzu-definition-hbs-helpers');
 const path = require('path');
 const options = require(path.join(process.cwd(), 'yuzu.config.js'));
 
@@ -14,9 +15,11 @@ if(options.plugins) {
   });
 }
 
+var helpers = { ...yuzuHelpers, ...options.hbsHelpers }
+
 const buildBlockDependencies = (options) => {
 
-  yuzu.build.register(options.registeredPartialsDirs, options.hbsHelpers);
+  yuzu.build.register(options.registeredPartialsDirs, helpers);
   externals = yuzu.build.setup(options.renderedPartialDirs, options.layoutDir, options.autoSchemaProperties);
   blockDependencies = yuzu.build.getFilenamesInDirs(options.dependantDirectories);
 
